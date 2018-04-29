@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>乐票云</title>
+</head>
+
+<body>
+    <!-- built files will be auto injected -->
+</body>
+
+<script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>
+    $.ajax({
+        type: 'get',
+        // url: 'http://www.lhtestwx.com/jeesite/wxApp/queryAppVersion',
+        url: 'http://w.hklhjy.com/jeesite/wxApp/queryAppVersion',
+        data: {},
+        success: function (data) {
+            if (data.result == 1) {
+                // window.location.href = 'index' + data.rows.appVersion + '.html?code=' + getUrlParam("code") + '&state=' + getUrlParam("state")
+                //不保存history的跳转  确保，首页返回直接关闭应用，不会跳到本页
+                window.location.replace('index' + data.rows.appVersion + '.html?code=' + getUrlParam("code") + '&state=' + getUrlParam("state"));
+            }
+        },
+    });
+
+    /** 
+     * 取得url参数 
+    */
+    function getUrlParam(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); // 构造一个含有目标参数的正则表达式对象  
+        var r = window.location.search.substr(1).match(reg);  // 匹配目标参数  
+        if (r != null) return unescape(r[2]); return null; // 返回参数值  
+    }  
+</script>
+
+</html>
